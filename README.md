@@ -8,17 +8,19 @@ EchoPost is a powerful and flexible social media management tool that enables us
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Features](#features)
+  - [Technologies](#technologies)
   - [Getting Started](#getting-started)
   - [Usage](#usage)
+  - [Web Frontend](#web-frontend)
   - [API Documentation](#api-documentation)
   - [Contributing](#contributing)
   - [License](#license)
   - [Contact](#contact)
-  - [Thanks to:](#thanks-to)
+  - [Thanks To](#thanks-to)
 
 ## Introduction
 
-EchoPost is a robust social media management tool designed with Clean Architecture principles in mind. By adhering to Clean Architecture, we aim to achieve a highly maintainable, testable, and scalable codebase that is easy to understand and extend. The architecture separates concerns into distinct layers, promoting a clear separation of business logic from infrastructure and ensuring a high level of modularity.
+EchoPost is a robust social media management tool designed with Clean Architecture principles in mind. By adhering to Clean Architecture, we aim to achieve a highly maintainable, testable, and scalable codebase that is easy to understand and extend. The architecture separates concerns into distinct layers, promoting a clear separation of business logic from infrastructure and ensuring a high level of modularity. 
 
 ## Features
 
@@ -28,18 +30,27 @@ EchoPost is a robust social media management tool designed with Clean Architectu
 - OAuth authentication for secure access to social media accounts
 - API integration for developers to incorporate EchoPost functionality into their applications
 
+## Technologies
+- .NET 7
+- Entity Framework Core
+
 ## Getting Started
 
 To get started with EchoPost, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/yourusername/echopost.git`
-2. Install the necessary dependencies: `npm install`
-3. Configure your social media account credentials in the `config.js` file.
-4. Run the application: `node app.js`
+2. Navigate to `src/WebUI`
+3. Install the necessary dependencies: `npm install`
+4. Configure your settings in the `appsettings.{ENV}.json` file.
+5. Run the application: `dotnet run`
 
 ## Usage
 
 Once the application is running, you can access the EchoPost user interface through your web browser. From there, you can create and schedule messages for posting on different social media platforms. The user interface provides an intuitive and user-friendly experience, allowing you to efficiently manage your social media content.
+
+## Web Frontend
+- Angular Frontend (https://github.com/MorrisMorrison/echo-post-angular-client)
+
 
 ## API Documentation
 
@@ -63,5 +74,5 @@ EchoPost is released under the [MIT License](LICENSE).
 For any questions, feedback, or support, please contact our team at echo.post@example.com.
 
 
-## Thanks to:
-- https://github.com/jasontaylordev/CleanArchitecture 
+## Thanks To
+- Jason Taylor - Clean Architecture Project Template (https://github.com/jasontaylordev/CleanArchitecture)
