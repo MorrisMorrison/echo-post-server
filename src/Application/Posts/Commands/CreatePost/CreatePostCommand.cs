@@ -1,5 +1,7 @@
+using EchoPost.Application.Common.Extensions;
 using EchoPost.Application.Common.Interfaces;
 using EchoPost.Domain.Entities;
+using EchoPost.Domain.Enums;
 using EchoPost.Domain.Events;
 using MediatR;
 
@@ -10,6 +12,7 @@ public record CreatePostCommand : IRequest<int>
 
     public string? Title { get; init; } 
     public string? Content { get; init; }
+    public IList<ChannelType> ChannelTypes {get;set;} = new List<ChannelType>();
 }
 
 public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
@@ -26,7 +29,8 @@ public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
         var entity = new Post
         {
             Title = request.Title,
-            Content = request.Content
+            Content = request.Content,
+            ChannelTypes = request.ChannelTypes
         };
 
         entity.AddDomainEvent(new PostCreatedEvent(entity));

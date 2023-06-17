@@ -1,4 +1,5 @@
 ﻿using EchoPost.Application.Common.Interfaces;
+using EchoPost.Application.Posts.Services;
 using EchoPost.Infrastructure.Files;
 using EchoPost.Infrastructure.Identity;
 using EchoPost.Infrastructure.Persistence;
@@ -44,6 +45,8 @@ public static class ConfigureServices
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
         services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
+        services.AddTransient<ITwitterApiService, TwitterApiService>();
+        services.AddTransient<IPostingService, PostingService>();
 
         services.AddAuthentication()
             .AddIdentityServerJwt();
