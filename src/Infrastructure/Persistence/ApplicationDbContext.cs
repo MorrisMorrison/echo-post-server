@@ -8,6 +8,8 @@ using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using EchoPost.Domain.Enums;
+
 
 namespace EchoPost.Infrastructure.Persistence;
 
@@ -36,11 +38,15 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        // builder.Entity<Post>()
-        // .Property(c => c.ChannelTypes)
-        // .HasConversion(
-        //     v => string.Join(',', v),
-        //     v => (IList<Domain.Enums.ChannelType>)(v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList() ?? new List<string>()));
+    //     builder.Entity<Post>()
+    //     .Property(c => c.ChannelTypes)
+    //   .HasConversion(
+    //       v => string.Join(",", v.Select(e => e.ToString("D")).ToArray()),
+    //       v => v.Split(new[] { ',' })
+    //         .Select(e =>  Enum.Parse(typeof(ChannelType), e))
+    //         .Cast<ChannelType>()
+    //         .ToList()
+    //   );
 
         base.OnModelCreating(builder);
     }
