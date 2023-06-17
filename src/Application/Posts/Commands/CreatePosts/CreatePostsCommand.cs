@@ -40,7 +40,6 @@ public class CreatePostsCommandHandler : IRequestHandler<CreatePostsCommand, Uni
                 Channel = channel
             };
 
-
             entity.AddDomainEvent(new PostCreatedEvent(entity));
             _context.Posts.Add(entity);
         });

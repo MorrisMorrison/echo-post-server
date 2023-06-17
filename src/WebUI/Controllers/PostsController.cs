@@ -10,11 +10,6 @@ namespace EchoPost.WebUI.Controllers;
 [Authorize]
 public class PostsController : ApiControllerBase
 {
-    // [HttpGet]
-    // public async Task<ActionResult<PaginatedList<PostDto>>> GetPostsWithPagination([FromQuery] GetPostsWithPaginationQuery query)
-    // {
-    //     return await Mediator.Send(query);
-    // }
 
     [HttpGet]
     public async Task<IList<PostDto>> GetPosts()
