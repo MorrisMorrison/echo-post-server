@@ -12,10 +12,14 @@ EchoPost is a powerful and flexible social media management tool that enables us
   - [Getting Started](#getting-started)
   - [Usage](#usage)
   - [Web Frontend](#web-frontend)
-  - [Change Database to MSSQL](#change-database-to-mssql)
-    - [Install Package](#install-package)
-    - [Change ConnectionString in appsettings.json](#change-connectionstring-in-appsettingsjson)
-    - [Wire up service in ConfigureServices.cs](#wire-up-service-in-configureservicescs)
+  - [Database](#database)
+    - [Change Database to MSSQL](#change-database-to-mssql)
+      - [Install SQLServer Package for EFCore](#install-sqlserver-package-for-efcore)
+      - [Change ConnectionString in appsettings.json](#change-connectionstring-in-appsettingsjson)
+      - [Wire up service in ConfigureServices.cs](#wire-up-service-in-configureservicescs)
+    - [Migrations](#migrations)
+      - [Create Migration](#create-migration)
+    - [Apply Migration](#apply-migration)
   - [API Documentation](#api-documentation)
   - [Contributing](#contributing)
   - [License](#license)
@@ -55,18 +59,24 @@ Once the application is running, you can access the EchoPost user interface thro
 ## Web Frontend
 - Angular Frontend (https://github.com/MorrisMorrison/echo-post-angular-client)
 
-## Change Database to MSSQL
-### Install Package
+## Database
+### Change Database to MSSQL
+#### Install SQLServer Package for EFCore
 `cd src/Infrastructure`
 `dotnet add package Microsoft.EntityFrameworkCore.SqlServer `
-### Change ConnectionString in appsettings.json
+#### Change ConnectionString in appsettings.json
 `"DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=EchoPostDb;Trusted_Connection=True;MultipleActiveResultSets=true"`
-### Wire up service in ConfigureServices.cs
+#### Wire up service in ConfigureServices.cs
 ```            
 services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 ```
+### Migrations
+#### Create Migration
+```dotnet ef migrations add "InitialMigration" --project src/Infrastructure --startup-project src/WebUI --output-dir Persistence/Migrations```
+### Apply Migration
+```dotnet ef database update --project src/Infrastructure --startup-project src/WebUI```
 
 ## API Documentation
 
