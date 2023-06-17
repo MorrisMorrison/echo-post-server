@@ -34,9 +34,9 @@ public static class ConfigureServices
             );
 
             // MSSQL
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                    builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+            // services.AddDbContext<ApplicationDbContext>(options =>
+            //     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+            //         builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());

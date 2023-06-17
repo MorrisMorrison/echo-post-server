@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using EchoPost.Application.Common.Extensions;
 using EchoPost.Application.Common.Interfaces;
 using EchoPost.Domain.Entities;
@@ -12,6 +13,7 @@ public record CreatePostCommand : IRequest<int>
 
     public string? Title { get; init; } 
     public string? Content { get; init; }
+    [NotMapped]
     public IList<ChannelType> ChannelTypes {get;set;} = new List<ChannelType>();
 }
 

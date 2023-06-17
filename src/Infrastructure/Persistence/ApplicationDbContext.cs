@@ -36,6 +36,12 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+        // builder.Entity<Post>()
+        // .Property(c => c.ChannelTypes)
+        // .HasConversion(
+        //     v => string.Join(',', v),
+        //     v => (IList<Domain.Enums.ChannelType>)(v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList() ?? new List<string>()));
+
         base.OnModelCreating(builder);
     }
 
