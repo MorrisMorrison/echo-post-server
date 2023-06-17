@@ -22,9 +22,18 @@ public static class ConfigureServices
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseInMemoryDatabase("EchoPostDb"));
+
         }
         else
         {
+            // MYSQL
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
+                ServerVersion.AutoDetect(configuration.GetConnectionString("DefaultConnection")),
+                builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
+            );
+
+            // MSSQL
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
