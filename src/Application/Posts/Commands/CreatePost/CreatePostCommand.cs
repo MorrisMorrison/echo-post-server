@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Threading.Channels;
+using System.Linq;
 using EchoPost.Application.Common.Extensions;
 using EchoPost.Application.Common.Interfaces;
 using EchoPost.Domain.Entities;
@@ -11,8 +13,9 @@ namespace EchoPost.Application.Posts.Commands.CreatePost;
 public record CreatePostCommand : IRequest<int>
 {
 
-    public string? Title { get; init; } 
+    public string? Title { get; init; }
     public string? Content { get; init; }
+    public ChannelType Channel { get; init; }
 }
 
 public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
@@ -30,6 +33,7 @@ public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
         {
             Title = request.Title,
             Content = request.Content,
+            Channel = request.Channel
         };
 
         entity.AddDomainEvent(new PostCreatedEvent(entity));

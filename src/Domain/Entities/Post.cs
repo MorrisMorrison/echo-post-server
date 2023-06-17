@@ -10,7 +10,6 @@ public class Post : BaseAuditableEntity
 
     public string? Content { get; set; }
 
-    [NotMapped]
-    public IList<ChannelType> ChannelTypes{ get; set; } = new List<ChannelType>();
+    public ChannelType Channel{ get; set; }
 
 }

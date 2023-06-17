@@ -7,6 +7,32 @@
   },
   "paths": {
     "/api/Posts": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "operationId": "Posts_GetPosts",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PostDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Posts"
@@ -518,6 +544,41 @@
   },
   "components": {
     "schemas": {
+      "PostDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "channel": {
+            "$ref": "#/components/schemas/ChannelType"
+          }
+        }
+      },
+      "ChannelType": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "TWITTER",
+          "FACEBOOK",
+          "INSTAGRAM"
+        ],
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
       "CreatePostCommand": {
         "type": "object",
         "additionalProperties": false,
@@ -534,6 +595,9 @@
           "content": {
             "type": "string",
             "nullable": true
+          },
+          "channel": {
+            "$ref": "#/components/schemas/ChannelType"
           }
         }
       },
