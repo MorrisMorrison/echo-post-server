@@ -6,7 +6,7 @@ namespace EchoPost.Infrastructure.Services;
 
 public class PostingService : IPostingService
 {
-    private ITwitterApiService _twitterApiService;
+    private readonly ITwitterApiService _twitterApiService;
 
     public PostingService(ITwitterApiService twitterApiService) {
         _twitterApiService = twitterApiService;

@@ -583,7 +583,9 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "title"
+          "title",
+          "content",
+          "channel"
         ],
         "properties": {
           "title": {
@@ -594,9 +596,12 @@
           },
           "content": {
             "type": "string",
-            "nullable": true
+            "maxLength": 5000,
+            "minLength": 1,
+            "nullable": false
           },
           "channel": {
+            "nullable": false,
             "$ref": "#/components/schemas/ChannelType"
           }
         }

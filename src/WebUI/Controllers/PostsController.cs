@@ -25,6 +25,7 @@ public class PostsController : ApiControllerBase
     [HttpPost]
     public async Task<ActionResult<int>> Create(CreatePostCommand command)
     {
+        Console.WriteLine($"CreatePostCommand -> {command}");
         return await Mediator.Send(command);
     }
 }
