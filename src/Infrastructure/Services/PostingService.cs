@@ -14,7 +14,6 @@ public class PostingService : IPostingService
 
 
     public void Publish(PostDto postDto) {
-        Console.WriteLine($"Publish Post! {postDto}");
         _twitterApiService.Publish(postDto);
     }
 }
