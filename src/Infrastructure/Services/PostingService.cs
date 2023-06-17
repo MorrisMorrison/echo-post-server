@@ -15,7 +15,6 @@ public class PostingService : IPostingService
 
     public void Publish(PostDto postDto) {
         Console.WriteLine($"Publish Post! {postDto}");
-
-        postDto.ChannelTypes.ForEach(channelType => _twitterApiService.Publish(postDto));
+        _twitterApiService.Publish(postDto);
     }
 }

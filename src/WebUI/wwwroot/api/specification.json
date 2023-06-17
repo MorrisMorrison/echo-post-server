@@ -534,28 +534,8 @@
           "content": {
             "type": "string",
             "nullable": true
-          },
-          "channelTypes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ChannelType"
-            }
           }
         }
-      },
-      "ChannelType": {
-        "type": "integer",
-        "description": "",
-        "x-enumNames": [
-          "TWITTER",
-          "FACEBOOK",
-          "INSTAGRAM"
-        ],
-        "enum": [
-          0,
-          1,
-          2
-        ]
       },
       "PaginatedListOfTodoItemBriefDto": {
         "type": "object",

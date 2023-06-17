@@ -14,5 +14,4 @@ public record PostDto : IMapFrom<Post>
 
     public string? Content { get; init; }
 
-    public IList<ChannelType> ChannelTypes { get; init; } = new List<ChannelType>();
 }

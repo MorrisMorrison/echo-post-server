@@ -13,8 +13,6 @@ public record CreatePostCommand : IRequest<int>
 
     public string? Title { get; init; } 
     public string? Content { get; init; }
-    [NotMapped]
-    public IList<ChannelType> ChannelTypes {get;set;} = new List<ChannelType>();
 }
 
 public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
@@ -32,7 +30,6 @@ public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
         {
             Title = request.Title,
             Content = request.Content,
-            ChannelTypes = request.ChannelTypes
         };
 
         entity.AddDomainEvent(new PostCreatedEvent(entity));
