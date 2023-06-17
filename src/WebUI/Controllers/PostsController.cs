@@ -25,7 +25,7 @@ public class PostsController : ApiControllerBase
     [HttpGet("{id}")]
     public async Task<PostDto> GetPostById(int id)
     {
-        GetPostByIdQuery query = new GetPostByIdQuery(){
+        GetPostByIdQuery query = new(){
             Id = id
         };
 
@@ -35,14 +35,12 @@ public class PostsController : ApiControllerBase
     [HttpPost]
     public async Task<ActionResult<int>> Create(CreatePostCommand command)
     {
-        Console.WriteLine($"CreatePostCommand -> {command}");
         return await Mediator.Send(command);
     }
 
     [HttpPost("_bulk")]
     public async Task CreatePosts(CreatePostsCommand command)
     {
-        Console.WriteLine($"CreatePostsCommand -> {command}");
         await Mediator.Send(command);
     }
 }
