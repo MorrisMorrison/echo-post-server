@@ -2,7 +2,7 @@
 using AutoMapper;
 using EchoPost.Application.Common.Mappings;
 using EchoPost.Application.Common.Models;
-using EchoPost.Application.TodoLists.Queries.GetTodos;
+using EchoPost.Application.Posts.Services;
 using EchoPost.Domain.Entities;
 using NUnit.Framework;
 
@@ -28,10 +28,7 @@ public class MappingTests
     }
 
     [Test]
-    [TestCase(typeof(TodoList), typeof(TodoListDto))]
-    [TestCase(typeof(TodoItem), typeof(TodoItemDto))]
-    [TestCase(typeof(TodoList), typeof(LookupDto))]
-    [TestCase(typeof(TodoItem), typeof(LookupDto))]
+    [TestCase(typeof(Post), typeof(PostDto))]
     public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
     {
         var instance = GetInstanceOf(source);

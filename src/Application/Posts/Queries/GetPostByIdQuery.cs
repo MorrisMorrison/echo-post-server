@@ -33,7 +33,7 @@ public class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, PostDto
         Post? post = await _context.Posts
             .FirstOrDefaultAsync(post => post.Id == request.Id, cancellationToken: cancellationToken);
         
-        if (post == null) throw new NotFoundException(nameof(TodoItem), request.Id);
+        if (post == null) throw new NotFoundException(nameof(Post), request.Id);
 
         return _mapper.Map<PostDto>(post);
     }
