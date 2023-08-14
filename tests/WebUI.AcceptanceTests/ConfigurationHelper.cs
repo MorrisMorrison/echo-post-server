@@ -9,7 +9,7 @@ public static class ConfigurationHelper
     static ConfigurationHelper()
     {
         _configuration = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
+            .AddJsonFile("appsettings_webui.json")
             .AddEnvironmentVariables()
             .Build();
     }
