@@ -12,4 +12,6 @@ public class Post : BaseAuditableEntity
 
     public ChannelType Channel{ get; set; }
 
+    public PostState State {get; set;}
+
 }
