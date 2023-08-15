@@ -1,0 +1,42 @@
+name: Trigger auto deployment for echopost-server
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - '**'
+    - '.github/workflows/echopost-server-AutoDeployTrigger-d02f6d41-9ebd-4d23-a8f2-f28388d10849.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.ECHOPOSTSERVER_AZURE_CREDENTIALS }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          appSourcePath: ${{ github.workspace }} 
+          registryUrl: mormorcr.azurecr.io
+          registryUsername: ${{ secrets.ECHOPOSTSERVER_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.ECHOPOSTSERVER_REGISTRY_PASSWORD }}
+          containerAppName: echopost-server
+          resourceGroup: echopost
+          imageToBuild: mormorcr.azurecr.io/echopost-server:${{ github.sha }}
+          
+
+     
+
