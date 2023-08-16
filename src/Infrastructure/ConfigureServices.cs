@@ -1,4 +1,5 @@
-﻿using EchoPost.Application.Common.Interfaces;
+﻿using System.Data.Common;
+using EchoPost.Application.Common.Interfaces;
 using EchoPost.Application.Posts.Services;
 using EchoPost.Infrastructure.Files;
 using EchoPost.Infrastructure.Identity;
@@ -26,9 +27,9 @@ public static class ConfigureServices
         else
         {
             // MYSQL
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(Environment.GetEnvironmentVariable("MYSQL_CONNECTION"),
-                ServerVersion.AutoDetect(Environment.GetEnvironmentVariable("MYSQL_CONNECTION")),
+                services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
+                ServerVersion.AutoDetect(configuration.GetConnectionString("DefaultConnection")),
                 builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
             );
 

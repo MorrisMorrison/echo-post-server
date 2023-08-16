@@ -8,10 +8,6 @@ services:
     environment:
       - ASPNETCORE_URLS=http://*:80
       - ASPNETCORE_ENVIRONMENT=Development
-      - MYSQL_HOST=localhost:3306
-      - MYSQL_DATABASE=echopost
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
     ports:
       - "5331:80"
     depends_on:
