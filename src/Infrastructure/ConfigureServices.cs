@@ -28,8 +28,8 @@ public static class ConfigureServices
         {
             // MYSQL
                 services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(configuration.GetConnectionString("MYSQLCONNSTR_ECHOPOST"),
-                ServerVersion.AutoDetect(configuration.GetConnectionString("MYSQLCONNSTR_ECHOPOST")),
+                options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
+                ServerVersion.AutoDetect(configuration.GetConnectionString("DefaultConnection")),
                 builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
             );
 
