@@ -56,7 +56,7 @@ public static class ConfigureServices
         services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
         services.AddTransient<ITwitterApiService, TwitterApiService>();
         services.AddTransient<IPostingService, PostingService>();
-
+    
         services.AddAuthentication()
             .AddIdentityServerJwt();
 
