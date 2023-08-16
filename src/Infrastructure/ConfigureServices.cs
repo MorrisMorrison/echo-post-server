@@ -28,14 +28,14 @@ public static class ConfigureServices
         {
             // MYSQL
                 services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(Environment.GetEnvironmentVariable("MYSQL_CONNECTION_STRING"),
-                ServerVersion.AutoDetect(Environment.GetEnvironmentVariable("MYSQL_CONNECTION_STRING")),
+                options.UseMySql(configuration.GetConnectionString("MYSQLCONNSTR_ECHOPOST"),
+                ServerVersion.AutoDetect(configuration.GetConnectionString("MYSQLCONNSTR_ECHOPOST")),
                 builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
             );
 
             // MSSQL
             // services.AddDbContext<ApplicationDbContext>(options =>
-            //     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+            //     options.UseSqlServer(configuration.GetConnectionString("MYSQLCONNSTR_ECHOPOST"),
             //         builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
 
