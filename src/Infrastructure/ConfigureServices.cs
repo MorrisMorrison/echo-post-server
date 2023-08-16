@@ -28,8 +28,8 @@ public static class ConfigureServices
         {
             // MYSQL
                 services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
-                ServerVersion.AutoDetect(configuration.GetConnectionString("DefaultConnection")),
+                options.UseMySql(Environment.GetEnvironmentVariable("MYSQL_CONNECTION_STRING"),
+                ServerVersion.AutoDetect(Environment.GetEnvironmentVariable("MYSQL_CONNECTION_STRING")),
                 builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
             );
 

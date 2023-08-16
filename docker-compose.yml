@@ -8,6 +8,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://*:80
       - ASPNETCORE_ENVIRONMENT=Development
+      - MYSQL_CONNECTION_STRING=Server=db; User ID=user; Password=password; Database=echopost
     ports:
       - "5331:80"
     depends_on:
