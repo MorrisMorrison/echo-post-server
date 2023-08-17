@@ -26,10 +26,7 @@ public static class ConfigureServices
         }
         else
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection") 
-            ?? configuration.GetConnectionString("MYSQLCONNSTR_DefaultConnection") 
-            ?? configuration.GetValue<string>("MYSQLCONNSTR_DefaultConnection") 
-            ?? Environment.GetEnvironmentVariable("MYSQLCONNSTR_DefaultConnection");
+            string connectionString = configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING");
             // MYSQL
                 services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(connectionString,
