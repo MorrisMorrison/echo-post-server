@@ -22,7 +22,6 @@ EchoPost is a powerful and flexible social media management tool that enables us
   - [License](#license)
   - [Contact](#contact)
   - [Thanks To](#thanks-to)
-        - [](#)
 
 ## Introduction
 
@@ -105,4 +104,4 @@ For any questions, feedback, or support, please contact our team at echo.post@ex
 ## Thanks To
 - Jason Taylor - Clean Architecture Project Template (https://github.com/jasontaylordev/CleanArchitecture)
   
-#####
+#######
