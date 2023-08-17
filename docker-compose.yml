@@ -8,7 +8,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://*:5000,https://*:5001
       - ASPNETCORE_ENVIRONMENT=Development
-      - MYSQLCONNSTR_echopost=Server=db; User ID=user; Password=password; Database=echopost
+      - MYSQLCONNSTR_DefaultConnection=Server=db; User ID=root; Password=password; Database=echopost
     ports:
       - "9637:5000"
       - "9634:5001"
@@ -21,7 +21,7 @@ services:
     environment:
       MYSQL_DATABASE: "echopost"
       # So you don't have to use root, but you can if you like
-      MYSQL_USER: "user"
+      MYSQL_USER: "root"
       # You can use whatever password you like
       MYSQL_PASSWORD: "password"
       # Password for root access

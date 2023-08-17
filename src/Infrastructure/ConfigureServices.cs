@@ -26,10 +26,14 @@ public static class ConfigureServices
         }
         else
         {
+            string connectionString = configuration.GetConnectionString("DefaultConnection") 
+            ?? configuration.GetConnectionString("MYSQLCONNSTR_DefaultConnection") 
+            ?? configuration.GetValue<string>("MYSQLCONNSTR_DefaultConnection") 
+            ?? Environment.GetEnvironmentVariable("MYSQLCONNSTR_DefaultConnection");
             // MYSQL
                 services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(configuration.GetConnectionString("echopost"),
-                ServerVersion.AutoDetect(configuration.GetConnectionString("echopost")),
+                options.UseMySql(connectionString,
+                ServerVersion.AutoDetect(connectionString),
                 builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
             );
 
