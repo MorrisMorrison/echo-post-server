@@ -7,6 +7,7 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 builder.Configuration.AddEnvironmentVariables();
 
+builder.Services.AddCors(options => options.AddPolicy(name: "echopost-angular-client", policy => policy.WithOrigins("https://echopost-angular-client.azurewebsites.net/")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,8 +28,9 @@ app.UseSwaggerUi3(settings =>
     settings.Path = "/api";
     settings.DocumentPath = "/api/specification.json";
 });
-
 app.UseRouting();
+
+app.UseCors("echopost-angular-client");
 
 app.UseAuthentication();
 app.UseIdentityServer();
