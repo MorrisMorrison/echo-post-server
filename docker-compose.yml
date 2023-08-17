@@ -8,7 +8,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://*:5000,https://*:5001
       - ASPNETCORE_ENVIRONMENT=Development
-      - MYSQLCONNSTR_DefaultConnection=Server=db; User ID=root; Password=password; Database=echopost
+      - AZURE_MYSQL_CONNECTIONSTRING=Server=db; User ID=root; Password=password; Database=echopost
     ports:
       - "9637:5000"
       - "9634:5001"
