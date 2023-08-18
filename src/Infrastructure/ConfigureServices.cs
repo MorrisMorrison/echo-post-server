@@ -48,8 +48,7 @@ public static class ConfigureServices
             .AddDefaultIdentity<ApplicationUser>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
-
-        services.AddIdentityServer(options => options.IssuerUri = "https://localhost:44447")
+        services.AddIdentityServer(options => options.IssuerUri = "https://echopost-server.azurewebsites.net")
             .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
         services.AddTransient<IDateTime, DateTimeService>();
