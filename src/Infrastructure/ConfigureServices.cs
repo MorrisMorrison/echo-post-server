@@ -45,9 +45,11 @@ public static class ConfigureServices
             .AddDefaultIdentity<ApplicationUser>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
-        var isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
-        services.AddIdentityServer(options => options.IssuerUri = isDevelopment ? "https://localhost:44447" : "https://echopost-server.azurewebsites.net")
-            .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+        // var isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+        // services.AddIdentityServer(options => options.IssuerUri = isDevelopment ? "https://localhost:44447" : "https://echopost-server.azurewebsites.net")
+        //         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+        services.AddIdentityServer(options => options.IssuerUri = "https://echopost-server.azurewebsites.net")
+                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
