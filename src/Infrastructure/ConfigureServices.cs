@@ -7,6 +7,8 @@ using EchoPost.Infrastructure.Persistence;
 using EchoPost.Infrastructure.Persistence.Interceptors;
 using EchoPost.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,16 +30,11 @@ public static class ConfigureServices
         {
             string connectionString = configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING");
             // MYSQL
-                services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(connectionString,
                 ServerVersion.AutoDetect(connectionString),
                 builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
             );
-
-            // MSSQL
-            // services.AddDbContext<ApplicationDbContext>(options =>
-            //     options.UseSqlServer(configuration.GetConnectionString("MYSQLCONNSTR_ECHOPOST"),
-            //         builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
@@ -48,7 +45,8 @@ public static class ConfigureServices
             .AddDefaultIdentity<ApplicationUser>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
-        services.AddIdentityServer(options => options.IssuerUri = "https://echopost-server.azurewebsites.net")
+        var isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+        services.AddIdentityServer(options => options.IssuerUri = isDevelopment ? "https://localhost:44447" : "https://echopost-server.azurewebsites.net")
             .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
         services.AddTransient<IDateTime, DateTimeService>();
@@ -56,7 +54,7 @@ public static class ConfigureServices
         services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
         services.AddTransient<ITwitterApiService, TwitterApiService>();
         services.AddTransient<IPostingService, PostingService>();
-    
+
         services.AddAuthentication()
             .AddIdentityServerJwt();
 
