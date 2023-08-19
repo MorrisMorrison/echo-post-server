@@ -7,8 +7,10 @@ using EchoPost.Infrastructure.Persistence;
 using EchoPost.Infrastructure.Persistence.Interceptors;
 using EchoPost.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -45,6 +47,9 @@ public static class ConfigureServices
             .AddDefaultIdentity<ApplicationUser>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
+
+        Console.WriteLine("Infrastructure => configure webservices:");
+        Console.WriteLine(configuration.GetValue<string>("IdentityServer:IssuerUri"));
         services.AddIdentityServer(options => options.IssuerUri = configuration.GetValue<string>("IdentityServer:IssuerUri"))
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
@@ -55,8 +60,9 @@ public static class ConfigureServices
         services.AddTransient<IPostingService, PostingService>();
 
         services.AddAuthentication()
-            .AddIdentityServerJwt();
+            .AddIdentityServerJwt()
 
+;
         services.AddAuthorization(options =>
             options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
 
