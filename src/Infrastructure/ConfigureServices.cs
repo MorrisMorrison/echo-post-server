@@ -48,9 +48,7 @@ public static class ConfigureServices
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        Console.WriteLine("Infrastructure => configure webservices:");
-        Console.WriteLine(configuration.GetValue<string>("IdentityServer:IssuerUri"));
-        services.AddIdentityServer(options => options.IssuerUri = configuration.GetValue<string>("IdentityServer:IssuerUri"))
+        services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
         services.AddTransient<IDateTime, DateTimeService>();
@@ -60,9 +58,8 @@ public static class ConfigureServices
         services.AddTransient<IPostingService, PostingService>();
 
         services.AddAuthentication()
-            .AddIdentityServerJwt()
+            .AddIdentityServerJwt();
 
-;
         services.AddAuthorization(options =>
             options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
 
