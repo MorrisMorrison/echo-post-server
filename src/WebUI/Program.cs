@@ -34,7 +34,6 @@ app.UseCookiePolicy(new CookiePolicyOptions
     Secure = CookieSecurePolicy.Always
 });
 app.UseAuthentication();
-
 app.UseIdentityServer();
 app.UseAuthorization();
 app.MapControllerRoute(
@@ -42,5 +41,6 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+app.UseStaticFiles();
 
 app.Run();
