@@ -6,8 +6,10 @@ using EchoPost.Infrastructure.Identity;
 using EchoPost.Infrastructure.Persistence;
 using EchoPost.Infrastructure.Persistence.Interceptors;
 using EchoPost.Infrastructure.Services;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -51,17 +53,22 @@ public static class ConfigureServices
         services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
+
+
+        services.AddAuthentication()
+            .AddIdentityServerJwt();
+
+
+
+        services.AddAuthorization(options =>
+          options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
+
+
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
         services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
         services.AddTransient<ITwitterApiService, TwitterApiService>();
         services.AddTransient<IPostingService, PostingService>();
-
-        services.AddAuthentication()
-            .AddIdentityServerJwt();
-
-        services.AddAuthorization(options =>
-            options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
 
         return services;
     }
