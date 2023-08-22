@@ -12,5 +12,12 @@ RUN dotnet publish "src/WebUI/WebUI.csproj"  -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
+
+ARG AZURE_MYSQL_CONNECTIONSTRING=Server=localhost; User ID=root; Password=password; Database=echopost
+ENV AZURE_MYSQL_CONNECTIONSTRING=${AZURE_MYSQL_CONNECTIONSTRING}
+
+ARG ASPNETCORE_ENVIRONMENT=Development 
+ENV ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "WebUI.dll"]

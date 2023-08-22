@@ -9,7 +9,9 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 builder.Configuration.AddEnvironmentVariables();
 
-builder.Services.AddCors(options => options.AddPolicy(name: "echopost-angular-client", policy => policy.WithOrigins("https://echopost-angular-client.azurewebsites.net", "http://localhost:44447").AllowAnyHeader().AllowAnyMethod()));
+builder.Services.AddCors(options => options.AddPolicy(name: "echopost-angular-client", policy => policy.WithOrigins("https://echopost-angular-client.azurewebsites.net", "http://localhost:44447")
+.AllowAnyHeader()
+.AllowAnyMethod()));
 var app = builder.Build();
 
 using var scope = app.Services.CreateScope();
