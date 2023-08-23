@@ -8,9 +8,10 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 builder.Configuration.AddEnvironmentVariables();
+
 string connectionString = builder.Configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING");
-string env = builder.Configuration.GetConnectionString("ASPNETCORE_ENVIRONMENT");
-string urls = builder.Configuration.GetConnectionString("ASPNETCORE_URLS");
+string env = builder.Configuration.GetValue<string>("ASPNETCORE_ENVIRONMENT");
+string urls = builder.Configuration.GetValue<string>("ASPNETCORE_URLS");
 
 Console.WriteLine("--- STARTING APPLICATION WITH ---");
 Console.WriteLine("AZURE_MYSQL_CONNECTIONSTRING:" + connectionString);
