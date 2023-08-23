@@ -32,13 +32,13 @@ public static class ConfigureServices
         }
         else
         {
-            string connectionString = configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING");
-            // MYSQL
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(connectionString,
-                ServerVersion.AutoDetect(connectionString),
-                builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
-            );
+            // string connectionString = configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING");
+            // // MYSQL
+            // services.AddDbContext<ApplicationDbContext>(options =>
+            //     options.UseMySql(connectionString,
+            //     ServerVersion.AutoDetect(connectionString),
+            //     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
+            // );
         }
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
