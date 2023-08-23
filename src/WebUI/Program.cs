@@ -8,6 +8,14 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 builder.Configuration.AddEnvironmentVariables();
+string connectionString = builder.Configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING");
+string env = builder.Configuration.GetConnectionString("ASPNETCORE_ENVIRONMENT");
+string urls = builder.Configuration.GetConnectionString("ASPNETCORE_URLS");
+
+Console.WriteLine("--- STARTING APPLICATION WITH ---");
+Console.WriteLine("AZURE_MYSQL_CONNECTIONSTRING:" + connectionString);
+Console.WriteLine("ASPNETCORE_ENVIRONMENT:" + env);
+Console.WriteLine("ASPNETCORE_URLS:" + urls);
 
 builder.Services.AddCors(options => options.AddPolicy(name: "echopost-angular-client", policy => policy.WithOrigins("https://echopost-angular-client.azurewebsites.net", "http://localhost:44447")
 .AllowAnyHeader()
