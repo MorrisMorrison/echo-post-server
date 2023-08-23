@@ -27,7 +27,12 @@ Console.WriteLine("ASPNETCORE_URLS:" + urls);
 Console.WriteLine();
 
 
-builder.Services.AddCors(options => options.AddPolicy(name: "echopost-angular-client", policy => policy.WithOrigins("https://echopost-angular-client.azurewebsites.net", "http://localhost:44447", "http://echopost-angular-client.mormor.online", "https://echopost-angular-client.mormor.online")
+builder.Services.AddCors(options => options.AddPolicy(name: "echopost-angular-client", policy => policy.WithOrigins(
+    "https://echopost-angular-client.azurewebsites.net",
+    "http://localhost:44447",
+    "http://echopost-angular-client.mormor.online",
+    "https://echopost-angular-client.mormor.online"
+    )
 .AllowAnyHeader()
 .AllowAnyMethod()));
 var app = builder.Build();
