@@ -1,27 +1,26 @@
 version: "3.7"
 
 services:
-  server:
+  echopost-server:
     build:
       context: .
       dockerfile: Dockerfile
     environment:
-      - ASPNETCORE_URLS=http://*:5000,https://*:5001
+      - ASPNETCORE_URLS=http://*:5000
       - ASPNETCORE_ENVIRONMENT=Development
-      - AZURE_MYSQL_CONNECTIONSTRING=Server=db; User ID=root; Password=password; Database=echopost
+      - ConnectionStrings__AZURE_MYSQL_CONNECTIONSTRING=Server=echopost-db; User ID=root; Password=password; Database=echopost
     ports:
       - "9637:5000"
-      - "9634:5001"
     depends_on:
-      db:
+      echopost-db:
         condition: service_healthy
-  db:
+  echopost-db:
     image: arm64v8/mysql:latest
     restart: always
     environment:
       MYSQL_DATABASE: "echopost"
       # So you don't have to use root, but you can if you like
-      MYSQL_USER: "root"
+      MYSQL_USER: "user"
       # You can use whatever password you like
       MYSQL_PASSWORD: "password"
       # Password for root access
