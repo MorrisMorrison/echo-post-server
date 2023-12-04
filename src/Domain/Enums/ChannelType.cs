@@ -1,6 +1,6 @@
 namespace EchoPost.Domain.Enums;
 
-public enum ChannelType
+public enum Channel
 {
     TWITTER = 0,
     FACEBOOK = 1,

@@ -56,8 +56,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "integer",
-                  "format": "int32"
+                  "type": "string"
                 }
               }
             }
@@ -82,8 +81,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             },
             "x-position": 1
           }
@@ -157,11 +155,11 @@
             "nullable": true
           },
           "channel": {
-            "$ref": "#/components/schemas/ChannelType"
+            "$ref": "#/components/schemas/Channel"
           }
         }
       },
-      "ChannelType": {
+      "Channel": {
         "type": "integer",
         "description": "",
         "x-enumNames": [
@@ -198,7 +196,7 @@
           },
           "channel": {
             "nullable": false,
-            "$ref": "#/components/schemas/ChannelType"
+            "$ref": "#/components/schemas/Channel"
           }
         }
       },
@@ -222,7 +220,7 @@
           "channels": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ChannelType"
+              "$ref": "#/components/schemas/Channel"
             }
           }
         }

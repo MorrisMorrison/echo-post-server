@@ -18,7 +18,7 @@ public class PostsController : ApiControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<PostDto> GetPostById(int id)
+    public async Task<PostDto> GetPostById(string id)
     {
         GetPostByIdQuery query = new(){
             Id = id
@@ -28,7 +28,7 @@ public class PostsController : ApiControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Create(CreatePostCommand command)
+    public async Task<ActionResult<string>> Create(CreatePostCommand command)
     {
         return await Mediator.Send(command);
     }

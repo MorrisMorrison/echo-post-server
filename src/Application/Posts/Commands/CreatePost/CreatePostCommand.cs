@@ -10,15 +10,15 @@ using MediatR;
 
 namespace EchoPost.Application.Posts.Commands.CreatePost;
 
-public record CreatePostCommand : IRequest<int>
+public record CreatePostCommand : IRequest<string>
 {
 
     public string? Title { get; init; }
     public string? Content { get; init; }
-    public ChannelType Channel { get; init; }
+    public Domain.Enums.Channel Channel { get; init; }
 }
 
-public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
+public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, string>
 {
     private readonly IApplicationDbContext _context;
 
@@ -27,7 +27,7 @@ public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
         _context = context;
     }
 
-    public async Task<int> Handle(CreatePostCommand request, CancellationToken cancellationToken)
+    public async Task<string> Handle(CreatePostCommand request, CancellationToken cancellationToken)
     {
         var entity = new Post
         {
@@ -42,6 +42,6 @@ public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        return entity.Id;
+        return entity.Id.ToString();
     }
 }

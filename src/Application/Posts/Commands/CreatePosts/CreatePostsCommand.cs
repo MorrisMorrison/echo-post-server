@@ -17,7 +17,7 @@ public record CreatePostsCommand : IRequest<Unit>
 
     public string? Title { get; init; }
     public string? Content { get; init; }
-    public IList<ChannelType> Channels { get; init; } = new List<ChannelType>();
+    public IList<Domain.Enums.Channel> Channels { get; init; } = new List<Domain.Enums.Channel>();
 }
 
 public class CreatePostsCommandHandler : IRequestHandler<CreatePostsCommand, Unit>

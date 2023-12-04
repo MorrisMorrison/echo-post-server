@@ -14,6 +14,6 @@ public record PostDto : IMapFrom<Post>
 
     public string? Content { get; init; }
 
-    public ChannelType Channel { get; init; }
+    public Channel Channel { get; init; }
 
 }

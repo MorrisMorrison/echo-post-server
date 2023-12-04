@@ -14,7 +14,7 @@ namespace EchoPost.Application.Posts.Queries;
 
 public record GetPostByIdQuery : IRequest<PostDto>
 {
-    public int Id { get; init; }
+    public string Id { get; init; }
 }
 
 public class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, PostDto>
@@ -31,7 +31,7 @@ public class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, PostDto
     public async Task<PostDto> Handle(GetPostByIdQuery request, CancellationToken cancellationToken)
     {   
         Post? post = await _context.Posts
-            .FirstOrDefaultAsync(post => post.Id == request.Id, cancellationToken: cancellationToken);
+            .FirstOrDefaultAsync(post => post.Id.ToString() == request.Id.ToString(), cancellationToken: cancellationToken);
         
         if (post == null) throw new NotFoundException(nameof(Post), request.Id);
 
